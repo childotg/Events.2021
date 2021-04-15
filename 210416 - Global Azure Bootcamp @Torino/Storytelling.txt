@@ -1,0 +1,6 @@
+- Integrate data from the outside world
+- Data lake vs Database: where the data manipulation resides
+- SQL Database basics
+- JSON functions basics
+- Storing arrays
+- Large JSONs and Optimizations
