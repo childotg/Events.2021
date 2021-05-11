@@ -1,0 +1,67 @@
+Provisioning:
+- Service Bus
+- Registry
+
+
+FROM mcr.microsoft.com/dotnet/runtime:latest
+COPY [".","App/"]
+WORKDIR /App
+ENTRYPOINT ["dotnet", "Consumer.dll"]
+
+
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "aciName": {
+            "defaultValue": "dope-consumer",
+            "type": "String"
+        },
+        "count": {
+            "defaultValue": "100",
+            "type": "int"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.ContainerInstance/containerGroups",
+            "apiVersion": "2021-03-01",
+            "name": "[concat(parameters('aciName'),'-',copyIndex())]",
+            "location": "westeurope",
+            "copy": {
+                "name":"aciCopy",
+                "count": "[parameters('count')]"
+            },
+            "properties": {
+                "sku": "Standard",
+                "containers": [
+                    {
+                        "name": "[parameters('aciName')]",
+                        "properties": {
+                            "image": "devopsproeurope.azurecr.io/consumer:latest",
+                            "ports": [],
+                            "environmentVariables": [],
+                            "resources": {
+                                "requests": {
+                                    "memoryInGB": 1.5,
+                                    "cpu": 1
+                                }
+                            }
+                        }
+                    }
+                ],
+                "initContainers": [],
+                "imageRegistryCredentials": [
+                    {
+                        "server": "devopsproeurope.azurecr.io",
+                        "username": "devopsproeurope",
+                        "password":""
+                    }
+                ],
+                "restartPolicy": "OnFailure",
+                "osType": "Linux"
+            }
+        }
+    ]
+}
