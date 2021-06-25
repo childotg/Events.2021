@@ -1,0 +1,7 @@
+sh /mnt/batch/tasks/startup/wd/dotnetcoreinstall.sh
+dotnet /mnt/batch/tasks/startup/wd/DryRunContinuousJob.dll
+
+FROM mcr.microsoft.com/dotnet/runtime:latest
+COPY [".","App/"]
+WORKDIR /App
+ENTRYPOINT ["dotnet", "DryRunContinuousJob.dll"]
