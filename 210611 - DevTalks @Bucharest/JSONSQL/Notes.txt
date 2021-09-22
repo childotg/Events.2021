@@ -1,0 +1,1 @@
+Scaffold-DbContext "server=json-sql.database.windows.net;user=json-sql;password=[removed];database=demo" Microsoft.EntityFrameworkCore.SqlServer -Project DataPrep -OutputDir Database -f -StartupProject DataPrep -Context DemoContext
