@@ -13,13 +13,13 @@ ENTRYPOINT ["dotnet", "Consumer.dll"]
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "aciName": {
-            "defaultValue": "cdays-consumer",
+        "containerGroups_netddays_name": {
+            "defaultValue": "netddays",
             "type": "String"
         },
-        "count": {
-            "defaultValue": "100",
-            "type": "int"
+        "count":{
+            "defaultValue":1,
+            "type":"int"
         }
     },
     "variables": {},
@@ -27,19 +27,19 @@ ENTRYPOINT ["dotnet", "Consumer.dll"]
         {
             "type": "Microsoft.ContainerInstance/containerGroups",
             "apiVersion": "2021-03-01",
-            "name": "[concat(parameters('aciName'),'-',copyIndex())]",
-            "location": "westeurope",
-            "copy": {
+            "copy":{
                 "name":"aciCopy",
                 "count": "[parameters('count')]"
             },
+            "name": "[concat(parameters('containerGroups_netddays_name'),'-',copyIndex())]",
+            "location": "westeurope",
             "properties": {
                 "sku": "Standard",
                 "containers": [
                     {
-                        "name": "[parameters('aciName')]",
+                        "name": "[parameters('containerGroups_netddays_name')]",
                         "properties": {
-                            "image": "cdays2021.azurecr.io/consumer:latest",
+                            "image": "netddays.azurecr.io/consumer:latest",
                             "ports": [],
                             "environmentVariables": [],
                             "resources": {
@@ -54,8 +54,8 @@ ENTRYPOINT ["dotnet", "Consumer.dll"]
                 "initContainers": [],
                 "imageRegistryCredentials": [
                     {
-                        "server": "cdays2021.azurecr.io",
-                        "username": "cdays2021",
+                        "server": "netddays.azurecr.io",
+                        "username": "netddays",
                         "password":""
                     }
                 ],

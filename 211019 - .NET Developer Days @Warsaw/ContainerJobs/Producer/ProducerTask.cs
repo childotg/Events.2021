@@ -1,8 +1,8 @@
-﻿using Common;
-using Microsoft.Azure.ServiceBus;
+﻿using Azure.Messaging.ServiceBus;
+using Common;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Producer
@@ -15,15 +15,31 @@ namespace Producer
 
         internal async Task RunAsync()
         {
-            var qc = new QueueClient(Constants.SBConnection, Constants.SBTodoQueue,
-                ReceiveMode.PeekLock);
-            for (int i = 0; i < 10; i++)
+            var client = new ServiceBusClient(Constants.SBConnection)
+                .CreateSender(Constants.SBTodoQueue);
+
+            var random = new Random();
+            var messages = Enumerable.Range(0, 10000)
+                .Select(p => new ServiceBusMessage(
+                        JsonConvert.SerializeObject(new MessageModel
+                        {
+                            A = random.Next(10000),
+                            B = random.Next(10000)
+                        }
+                    )));
+
+            var batch = await client.CreateMessageBatchAsync();
+            foreach (var item in messages)
             {
-                var messages = Enumerable.Range(0, 3000)
-                    .Select(p => new Message(Encoding.UTF8.GetBytes(Guid.NewGuid().ToString())))
-                    .ToList();
-                await qc.SendAsync(messages);
+                if (batch.Count == 4500 || !batch.TryAddMessage(item))
+                {
+                    Console.WriteLine("Sending a batch...");
+                    await client.SendMessagesAsync(batch);
+                    batch = await client.CreateMessageBatchAsync();
+                }
             }
+            Console.WriteLine("Sending a batch...");
+            await client.SendMessagesAsync(batch);
 
         }
     }
