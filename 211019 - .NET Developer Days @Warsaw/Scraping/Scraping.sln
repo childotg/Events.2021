@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scraping", "Scraping\Scraping.csproj", "{0B25BB73-1CAD-40CB-92C6-B7A2F4BA48BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DryRun", "DryRun", "{F16B9F9B-3C76-44BB-8B78-1E215531C8BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B25BB73-1CAD-40CB-92C6-B7A2F4BA48BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B25BB73-1CAD-40CB-92C6-B7A2F4BA48BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B25BB73-1CAD-40CB-92C6-B7A2F4BA48BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B25BB73-1CAD-40CB-92C6-B7A2F4BA48BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0B25BB73-1CAD-40CB-92C6-B7A2F4BA48BC} = {F16B9F9B-3C76-44BB-8B78-1E215531C8BA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F28805F2-1A3B-47A4-9CA4-B58EEC22358B}
+	EndGlobalSection
+EndGlobal
