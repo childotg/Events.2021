@@ -34,7 +34,8 @@ namespace Scraping
             options.AddArgument("--headless");
             options.AddArgument("--no-sandbox");
 
-            var driver = new RemoteWebDriver(new Uri("http://bl-01.westeurope.azurecontainer.io:3000/webdriver")
+            var driver = new RemoteWebDriver(
+                new Uri("http://IP:3000/webdriver")
                 , options);
 
             var baseUrl = "https://net.developerdays.pl/faq/";

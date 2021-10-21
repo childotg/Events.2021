@@ -14,6 +14,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Producer", "Producer\Produc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Consumer", "Consumer\Consumer.csproj", "{38CDDC30-5513-449A-BF32-B50941E5CE77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDDProducer", "NetDDProducer\NetDDProducer.csproj", "{E42B5776-A552-440E-8960-CDD672F05DB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDDConsumer", "NetDDConsumer\NetDDConsumer.csproj", "{870CF75A-99BB-46DA-8151-F4A8A228BE66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +36,14 @@ Global
 		{38CDDC30-5513-449A-BF32-B50941E5CE77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38CDDC30-5513-449A-BF32-B50941E5CE77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38CDDC30-5513-449A-BF32-B50941E5CE77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E42B5776-A552-440E-8960-CDD672F05DB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E42B5776-A552-440E-8960-CDD672F05DB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E42B5776-A552-440E-8960-CDD672F05DB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E42B5776-A552-440E-8960-CDD672F05DB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{870CF75A-99BB-46DA-8151-F4A8A228BE66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{870CF75A-99BB-46DA-8151-F4A8A228BE66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{870CF75A-99BB-46DA-8151-F4A8A228BE66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{870CF75A-99BB-46DA-8151-F4A8A228BE66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

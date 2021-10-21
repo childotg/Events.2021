@@ -1,0 +1,9 @@
+- Deploy background workloads
+- WebJobs, types, context
+- DEMO: webjob deployment options (VS, FTP)
+- Azure DevOps, context
+- DEMO: graphical pipeline
+- YAML, inside the demo
+- DEMO: YAML-ize, double
+- Hierarchical YAML, context
+- DEMO: YAML-ize, 2nd step
