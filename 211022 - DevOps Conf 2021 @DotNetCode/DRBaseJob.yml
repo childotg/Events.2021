@@ -1,0 +1,33 @@
+parameters:
+- name: basePath
+  type: string
+- name: jobName
+  type: string
+
+stages:
+- stage: JobDeploy
+  jobs:
+  - job: BuildAndDeploy
+    pool:
+      vmImage: ubuntu-latest
+    steps:      
+      - task: DotNetCoreCLI@2
+        displayName: 'Restore, Build & Publish'
+        inputs:
+            command: publish
+            publishWebProjects: false
+            projects: '${{ parameters.basePath }}/${{ parameters.jobName }}/${{ parameters.jobName }}.csproj'
+            arguments: '-c Release --output $(Build.ArtifactStagingDirectory)/WebJob/App_Data/jobs/triggered/${{ parameters.jobName }}'
+            zipAfterPublish: false
+            modifyOutputPath: false
+      - script: 'echo "dotnet ${{ parameters.jobName }}.dll" > run.cmd'
+        workingDirectory: '$(Build.ArtifactStagingDirectory)/WebJob/App_Data/jobs/triggered/${{ parameters.jobName }}'
+        displayName: 'Create run.cmd'
+      - task: FtpUpload@2
+        displayName: Publish
+        inputs:
+            serverEndpoint: 'doc21-01'
+            rootDirectory: '$(Build.ArtifactStagingDirectory)/WebJob'
+            remoteDirectory: /site/wwwroot
+            preservePaths: true
+            trustSSL: true
