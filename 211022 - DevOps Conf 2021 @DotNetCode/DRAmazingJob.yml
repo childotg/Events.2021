@@ -1,27 +1,5 @@
-stages:
-- stage: JobDeploy
-  jobs:
-  - job: BuildAndDeploy
-    pool:
-      vmImage: ubuntu-latest
-    steps:      
-      - task: DotNetCoreCLI@2
-        displayName: 'Restore, Build & Publish'
-        inputs:
-            command: publish
-            publishWebProjects: false
-            projects: '211022 - DevOps Conf 2021 @DotNetCode/JobsOnDevOps/AmazingJob/AmazingJob.csproj'
-            arguments: '-c Release --output $(Build.ArtifactStagingDirectory)/WebJob/App_Data/jobs/triggered/AmazingJob'
-            zipAfterPublish: false
-            modifyOutputPath: false
-      - script: 'echo "dotnet AmazingJob.dll" > run.cmd'
-        workingDirectory: '$(Build.ArtifactStagingDirectory)/WebJob/App_Data/jobs/triggered/AmazingJob'
-        displayName: 'Create run.cmd'
-      - task: FtpUpload@2
-        displayName: Publish
-        inputs:
-            serverEndpoint: 'doc21-01'
-            rootDirectory: '$(Build.ArtifactStagingDirectory)/WebJob'
-            remoteDirectory: /site/wwwroot
-            preservePaths: true
-            trustSSL: true
+extends:
+  template: DRBaseJob.yml
+  parameters:
+    basePath: '211022 - DevOps Conf 2021 @DotNetCode/JobsOnDevOps'
+    jobName: 'AmazingJob'    
