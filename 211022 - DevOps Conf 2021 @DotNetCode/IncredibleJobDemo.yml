@@ -1,0 +1,5 @@
+extends:
+  template: BaseJobDemo.yml
+  parameters:
+    basePath: '211022 - DevOps Conf 2021 @DotNetCode/JobsOnDevOps'
+    jobName: 'IncredibleJob'
